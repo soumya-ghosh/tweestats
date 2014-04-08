@@ -34,7 +34,8 @@ class Guestbook(webapp2.RequestHandler):
         woeid = locations_to_woeid[location]
         data = api.trends_place(woeid)
         trends = data[0]['trends']
-        names = ['<a href="' + trend['url'] + ' >' + trend['name'] + '</a>' for trend in trends]
+        names = ['<a href=' + trend['url'] + '>' + trend['name'] + '</a>' for trend in trends]
+        # names = [trend['name'] for trend in trends]
         trends_names = '<br/>'.join(names)
         self.response.write('<html><body><h2>You selected: ')
         self.response.write(cgi.escape(location))
